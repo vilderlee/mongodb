@@ -5,8 +5,6 @@ import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
 /**
  * 类说明:
  *
@@ -14,21 +12,16 @@ import java.util.List;
  * Modify Information:
  * Author        Date          Description
  * ============ ============= ============================
- * VilderLee    2019/8/29      Create this file
+ * VilderLee    2019/8/30      Create this file
  * </pre>
  */
 @Document
 @Data
 @ToString
-public class User {
+public class Result {
 
     @Id
-    private long userId;
+    private long id;
 
-    private String userName;
-
-    private int age;
-
-    private List<Address> address;
-
+    private int totalAge;
 }
