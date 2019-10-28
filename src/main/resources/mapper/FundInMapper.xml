@@ -5,7 +5,7 @@
 
 
 
-    <select id="getAll" resultType="fundIn">
+    <select id="getAll" resultType="com.vilderlee.mongodb.domain.FundIn">
         select * from FUNDIN
     </select>
 </mapper>

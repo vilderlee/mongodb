@@ -1,15 +1,12 @@
 package com.vilderlee.mongodb;
 
-import com.mongodb.DBCollection;
-import com.mongodb.MapReduceCommand;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.result.UpdateResult;
 import com.vilderlee.mongodb.domain.Address;
 import com.vilderlee.mongodb.domain.FundIn;
 import com.vilderlee.mongodb.domain.OrderTest;
 import com.vilderlee.mongodb.domain.Response;
 import com.vilderlee.mongodb.domain.Result;
-import com.vilderlee.mongodb.domain.User;
+import com.vilderlee.mongodb.domain.UserMG;
 import com.vilderlee.mongodb.mapper.FundInDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,14 +29,16 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-@RunWith(SpringRunner.class) @SpringBootTest public class MongodbApplicationTests {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class MongodbApplicationTests {
 
     @Autowired private MongoTemplate mongoTemplate;
 
     @Test public void insert() {
 
         mongoTemplate.createCollection("springboot");
-        User user = new User();
+        UserMG user = new UserMG();
         user.setUserId(1L);
         user.setUserName("vilderlee");
         user.setAge(25);
@@ -57,7 +56,7 @@ import java.util.List;
 
 
     @Test public void save() {
-        User useru = new User();
+        UserMG useru = new UserMG();
         useru.setUserId(1L);
         useru.setUserName("lichao");
         useru.setAge(25);
@@ -73,7 +72,7 @@ import java.util.List;
     @Test public void findAll(){
 
         Query query = Query.query(Criteria.where("age").is(18).and("userId").is(2));
-        List<User> users = mongoTemplate.find(query, User.class);
+        List<UserMG> users = mongoTemplate.find(query, UserMG.class);
 
         users.stream().forEach(System.out::println);
 
@@ -81,15 +80,15 @@ import java.util.List;
 //        Criteria criteria = new Criteria();
 //        criteria.orOperator(Criteria.where("age").is(18), Criteria.where("userId").is(1));
 //        query.addCriteria(criteria);
-//        List<User> users = mongoTemplate.find(query, User.class);
+//        List<UserMG> users = mongoTemplate.find(query, UserMG.class);
 //        users.stream().forEach(System.out::println);
     }
     @Test
     public void delete(){
         Query query = Query.query(Criteria.where("userId").is(1).orOperator(Criteria.where("userId").is(2)));
 
-        mongoTemplate.remove(query,User.class);
-        List<User> all = mongoTemplate.findAll(User.class);
+        mongoTemplate.remove(query,UserMG.class);
+        List<UserMG> all = mongoTemplate.findAll(UserMG.class);
         all.forEach(System.out::println);
     }
 
@@ -103,8 +102,8 @@ import java.util.List;
         update.multiply("age", 3);
         update.pop("users", Update.Position.FIRST);
 
-        UpdateResult updateResult = mongoTemplate.updateFirst(query, update, User.class);
-        User user =  mongoTemplate.findOne(query,User.class);
+        UpdateResult updateResult = mongoTemplate.updateFirst(query, update, UserMG.class);
+        UserMG user =  mongoTemplate.findOne(query,UserMG.class);
         System.out.println(user);
 
         System.out.println(updateResult);

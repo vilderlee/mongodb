@@ -20,7 +20,7 @@ import java.util.List;
 @Document
 @Data
 @ToString
-public class User {
+public class UserMG {
 
     @Id
     private long userId;

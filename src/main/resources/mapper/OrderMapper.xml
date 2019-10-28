@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vilderlee.mongodb.mapper.OrderDao">
+
+    <update id="updateOrderCount" parameterType="com.vilderlee.mongodb.domain.dto.Order">
+        update `order` SET Count = #{count}, Version = #{version}+1 WHERE SystemNo = #{systemNo} AND Version =
+            #{version}
+    </update>
+</mapper>

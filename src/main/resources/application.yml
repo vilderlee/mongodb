@@ -9,6 +9,8 @@ spring:
     mongodb:
       uri: mongodb://39.104.159.18:27017
       database: test
+  profiles:
+    active: dev
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
-  typeAliasesPackage: com.vilderlee.mongodb.domain
+
